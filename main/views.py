@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Subject, Note, Notice, ClassResult, TeacherMessage, BCAPaper, Topper
 from collections import defaultdict
 
+@login_required(login_url='login')
 def notes_dashboard(request):
     subjects_by_sem = {}
     for sem in range(1, 7):
@@ -57,6 +58,7 @@ def test(request):
 def events(request):
     return render(request, 'events.html')  
 
+@login_required(login_url='login')
 def bca_papers(request):
     papers = BCAPaper.objects.all()
 
@@ -89,12 +91,13 @@ def bca_papers(request):
         'years': years,
     })    
 
+@login_required(login_url='login')
 def notice_page(request):
     notices = Notice.objects.all().order_by('-date')
     return render(request, 'notice.html', {'notices': notices}) 
 
 
-
+@login_required(login_url='login')
 def results_page(request):
     classes = ['1st Year', '2nd Year', '3rd Year']
     data = {}
@@ -141,7 +144,7 @@ def results_page(request):
 
 
 
-
+@login_required(login_url='login')
 def teacher_messages(request):
     messages = TeacherMessage.objects.all()
     return render(request, 'teacher_messages.html', {'messages': messages})
