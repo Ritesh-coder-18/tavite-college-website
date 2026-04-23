@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -16,4 +17,5 @@ urlpatterns = [
     path('notices/', views.notice_page, name='notices'),
     path('results/', views.results_page, name='results'),
     path('messages/', views.teacher_messages, name='teacher_messages'),
+    path('google407a2edeb44b4096.html', TemplateView.as_view(template_name='google407a2edeb44b4096.html')),
 ]
