@@ -4,6 +4,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Subject, Note, Notice, ClassResult, TeacherMessage, BCAPaper, Topper
 from collections import defaultdict
+from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
+
+class StaticViewSitemap(Sitemap):
+    def items(self):
+        return ['home', 'about', 'courses']
+
+    def location(self, item):
+        return reverse(item)
 
 @login_required(login_url='login')
 def notes_dashboard(request):
